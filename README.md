@@ -28,6 +28,7 @@ How we created frontend (React):
 - <code>npm init react-app frontend</code>
 
 How we setup locally an LLM
+- on backend we ran <code>npm install ollama</code>
 - we followed the steps described here: https://dev.to/koolkamalkishor/running-and-creating-your-own-llms-locally-with-nodejs-api-using-ollama-97f
 
 - <code>ollama create doctor -f ./modelfile</code>

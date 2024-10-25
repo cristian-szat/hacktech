@@ -11,7 +11,7 @@ function OllamaComponent() {
         
         try {
             const res = await axios.post('http://localhost:8080/api/ollama', {
-                query: 'Your sample question here'
+                query: 'Why is the sky blue?'
             });
             setResponse(res.data.reply);
         } catch (error) {

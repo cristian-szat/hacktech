@@ -1,11 +1,11 @@
-const ollama = require('ollama');
+const { default: ollama } = require('ollama');
 
 const fetchOllamaResponse = async (req, res) => {
     const { query } = req.body;
 
     try {
         const response = await ollama.chat({
-            model: 'mrkamalkishor',
+            model: 'Side',
             messages: [{ role: 'user', content: query }],
         });
 

@@ -1,15 +1,19 @@
+// server.js
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+const corsOptions = require('./config/cors');
+const openaiRoute = require('./routes/openaiRoute');
+const ollamaRoute = require('./routes/ollamaRoute');
 
-const router = require('./router');  // Import centralized router
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(router);
+
+app.use('/api/openai', openaiRoute);
+app.use('/api/ollama', ollamaRoute);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
