@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import OpenAIComponent from './components/OpenAIComponent';
+import OllamaComponent from './components/OllamaComponent';
 
 function App() {
-    const [message, setMessage] = useState('');
-
-    useEffect(() => {
-        fetch('http://localhost:8080')
-            .then(response => response.json())
-            .then(data => setMessage(data.message))
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
- 
     return (
         <div className="App">
-            <h1>{message}</h1>
+            <h1>My App with OpenAI and Ollama Integration</h1>
+            <OpenAIComponent />
+            <OllamaComponent />
         </div>
     );
 }
