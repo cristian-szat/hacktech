@@ -12,7 +12,7 @@ function CardContainer() {
         onClick={() => navigate("/patient")} // Redirects to Patient Page
       >
         <img
-          src={`${process.env.PUBLIC_URL}/assets/images/doctor-ai.jpg`}
+          src={`${process.env.PUBLIC_URL}/assets/images/patient.jpg`}
           alt="Diagnostic for Patient"
           className={styles.cardImage}
         />
