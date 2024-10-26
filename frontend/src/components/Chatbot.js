@@ -8,6 +8,8 @@ const Chatbot = () => {
   ]);
   const [input, setInput] = useState("");
 
+  const [chatContext, setchatContext] = useState([]);
+
   // Mock API call to simulate chatbot response
   const mockChatbotAPI = async (prompt) => {
     return new Promise((resolve) => {
@@ -22,10 +24,58 @@ const Chatbot = () => {
     if (input.trim()) {
       setMessages((prevMessages) => [...prevMessages, { sender: "user", text: input }]);
       setInput("");
-      const response = await mockChatbotAPI(input);
+      
+      const response =  await postToOllama(input.trim(), chatContext); //await mockChatbotAPI(input);
+
+      console.log("context", response);
+
       setMessages((prevMessages) => [...prevMessages, { sender: "bot", text: response.response }]);
     }
   };
+
+  async function postToOllama(query, context) {
+    try {
+      const response = await fetch("http://localhost:8080/api/ollama", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query, context}), // Passing the query as a JSON object
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+  
+      const result = await response.json();
+  
+      // Extracting the reply from the response JSON
+      const replyMessage = result.reply.response || "No reply received";
+      console.log("Reply from server:", replyMessage);
+
+      setMessages((prevMessages) => [...prevMessages, { sender: "user", text: replyMessage }]);
+
+      setchatContext(result.reply.context);
+  
+      return replyMessage;
+    } catch (error) {
+      console.error("Error posting to Ollama:", error);
+    }
+  }
+
+    // Function to replace newline characters with <br> tags
+    const processText = (text) => {
+
+      if(text) {
+      return text.split('\n').map((line, index) => (
+        <React.Fragment key={index}>
+          {line}
+          <br />
+        </React.Fragment>
+      ));
+    }
+      return text;
+    };
 
   return (
     <div className={styles.chatContainer}>
@@ -36,7 +86,7 @@ const Chatbot = () => {
             key={index}
             className={message.sender === "user" ? styles.userMessage : styles.botMessage}
           >
-            {message.text}
+            {processText(message.text)}
           </div>
         ))}
       </div>
