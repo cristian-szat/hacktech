@@ -1,0 +1,99 @@
+/* src/TalkingCharacter.css */
+
+.talking-character {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #e8f0fe;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .character {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw; /* Occupies half the width of the viewport */
+    height: 50vh; /* Occupies half the height of the viewport */
+  }
+  
+  .character-image {
+    width: 100%; /* Image takes up the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Optional: Shadow for depth */
+  }
+  
+  .mouth-container {
+    position: absolute;
+    bottom: 20%; /* Position the mouths lower down the image */
+    left: 50%;
+    transform: translateX(-50%); /* Center the mouths under the image */
+    display: flex;
+    justify-content: center; /* Center the mouths horizontally */
+    gap: 5px; /* Space between the mouths */
+  }
+  
+  .mouth {
+    width: 20px; /* Width of each mouth */
+    height: 10px; /* Initial height of each mouth */
+    background-color: greenyellow; /* Mouth color */
+    border-radius: 5px; /* Rounded edges */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.2s ease; /* Smooth transition for mouth visibility */
+  }
+  
+  .talking {
+    opacity: 1; /* Show the mouth when talking */
+    animation: grow 0.5s infinite; /* Use the grow animation when talking */
+  }
+  
+  @keyframes grow {
+    0%, 100% {
+      height: 10px; /* Original height when not talking */
+    }
+    50% {
+      height: 20px; /* Height increased by 80% (5px * 1.8) */
+    }
+  }
+  
+  .talk-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 20px; /* Margin between character and button */
+  }
+  
+  .talk-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  .speech-bubble {
+    position: absolute;
+    top: -30px; /* Position speech bubble above the character */
+    background-color: #fff;
+    border: 2px solid #4caf50; /* Green border */
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 200px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s; /* Add fade-in animation */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

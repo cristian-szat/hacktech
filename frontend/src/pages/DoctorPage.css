@@ -1,0 +1,43 @@
+.doctor-page {
+  display: flex;
+  padding: 20px;
+}
+
+.sidebar {
+  flex: 1;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.center {
+  flex: 2;
+  padding: 20px;
+}
+
+.diagnostic {
+  flex: 1;
+  padding: 20px;
+  border-left: 1px solid #ccc;
+}
+
+.chat {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.messages {
+  margin-bottom: 10px;
+}
+
+.doctor {
+  color: blue;
+  text-align: right;
+}
+
+.uploaded-image {
+  max-width: 100%;
+  margin-top: 10px;
+}
