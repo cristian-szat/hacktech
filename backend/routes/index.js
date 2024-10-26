@@ -1,10 +1,10 @@
 const express = require('express');
-const openaiRoute = require('./routes/openaiRoute');
-const ollamaRoute = require('./routes/ollamaRoute');
+const openaiRoute = require('./openaiRoute');
+const ollamaRoute = require('./ollamaRoute');
 
 const router = express.Router();
 
-router.use('/api/openai', openaiRoute);
-router.use('/api/ollama', ollamaRoute);
+router.use('/openai', openaiRoute);
+router.use('/ollama', ollamaRoute);
 
 module.exports = router;

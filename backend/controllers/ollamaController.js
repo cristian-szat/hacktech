@@ -5,7 +5,7 @@ const fetchOllamaResponse = async (req, res) => {
 
     try {
         const response = await ollama.chat({
-            model: 'Side',
+            model: process.env.OLLAMA_MODEL_NAME,
             messages: [{ role: 'user', content: query }],
         });
 
