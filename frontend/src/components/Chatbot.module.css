@@ -1,0 +1,75 @@
+/* Chatbot.module.css */
+.chatContainer {
+    flex: 1;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f4f7f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chatContainer h2 {
+    text-align: center;
+    color: #00796b;
+  }
+  
+  .chatBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+  }
+  
+  .userMessage, .botMessage {
+    padding: 10px;
+    max-width: 70%;
+    border-radius: 15px;
+  }
+  
+  .userMessage {
+    align-self: flex-end;
+    background-color: #e0f7fa;
+    color: #00796b;
+  }
+  
+  .botMessage {
+    align-self: flex-start;
+    background-color: #c8e6c9;
+    color: #2e7d32;
+  }
+  
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .inputField {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+  }
+  
+  .sendButton {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sendButton:hover {
+    background-color: #004d40;
+  }
+  
