@@ -4,7 +4,12 @@ import styles from "./Navbar.module.css";
 function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <h1 className={styles.logo}>AI Diagnostics</h1>
+      <img
+          src={`${process.env.PUBLIC_URL}/assets/images/logo-ai.png`}
+          alt="Pulse Path"
+          className={styles.cardImage}
+        />
+      <h1 className={styles.logo}>Pulse Path - AI Diagnostics</h1>
     </nav>
   );
 }

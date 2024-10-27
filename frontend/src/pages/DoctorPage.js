@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./DoctorPage.css";
 import Chatbot from "./../components/Chatbot"; // Import the Chatbot component
+import DiagnosticArea from "./../components/Diagnostics"; // Import the DiagnosticArea component
 
 const DoctorPage = () => {
   const [patients, setPatients] = useState([]);
@@ -67,7 +68,8 @@ const DoctorPage = () => {
   };
 
   const handleSave = () => {
-    alert(`Saved for ${selectedPatient?.name}: ${diagnostic} - Medications: ${selectedMedications.join(", ")}`);
+    // alert(`Saved for ${selectedPatient?.name}: ${diagnostic} - Medications: ${selectedMedications.join(", ")}`);
+    alert(`Saved for ${selectedPatient?.name}`);
   };
 
     // Fetch patients when component mounts
@@ -80,7 +82,6 @@ const DoctorPage = () => {
     <div className={styles.pageContainer}>
       {/* Patient History Sidebar */}
       <div className={styles.historySidebar}>
-        <h3>Recent Patients</h3>
         <input
           type="text"
           placeholder="Search patient..."
@@ -102,30 +103,7 @@ const DoctorPage = () => {
       </div>
 
       {/* Medication and Diagnostic Area */}
-      <div className={styles.diagnosticContainer}>
-        <h2>Medication and Diagnostic</h2>
-        {selectedPatient && (
-          <>
-            <textarea
-              placeholder="Enter diagnostic details..."
-              value={diagnostic}
-              onChange={(e) => setDiagnostic(e.target.value)}
-              className={styles.diagnosticInput}
-            />
-            <select
-              multiple
-              value={selectedMedications}
-              onChange={handleMedicationChange}
-              className={styles.medicationSelect}
-            >
-              {medications.map((med) => (
-                <option key={med.id} value={med.name}>{med.name}</option>
-              ))}
-            </select>
-            <button onClick={handleSave} className={styles.saveButton}>Save</button>
-          </>
-        )}
-      </div>
+      <DiagnosticArea selectedPatient={selectedPatient}  diagnostic= {diagnostic} setDiagnostic= {setDiagnostic} medications={medications} selectedMedications={selectedMedications} handleMedicationChange={handleMedicationChange} handleSave={handleSave}/>
     </div>
   );
 };

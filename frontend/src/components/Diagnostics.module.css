@@ -1,0 +1,73 @@
+/* Diagnostic.module.css */
+
+/* Container for the entire section */
+.diagnosticContainer {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .diagnosticContainer h2 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  /* Diagnostic text area styling */
+  .diagnosticInput {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    font-size: 1em;
+    font-family: inherit;
+  }
+  
+  .diagnosticInput::placeholder {
+    color: #999;
+  }
+  
+  /* Medication selection dropdown */
+  .medicationSelect {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1em;
+    font-family: inherit;
+    margin-bottom: 15px;
+    overflow-y: auto;
+  }
+  
+  /* Save button styling */
+  .saveButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745; /* Green color for success */
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .saveButton:hover {
+    background-color: #218838;
+  }
+  
+  .saveButton:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(40, 167, 69, 0.5);
+  }
+  
