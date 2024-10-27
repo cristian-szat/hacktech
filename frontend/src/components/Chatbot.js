@@ -9,6 +9,16 @@
     const [input, setInput] = useState("");
 
     const [chatContext, setchatContext] = useState([]);
+    
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleEnterPress();
+        }
+    };
+    
+    const handleEnterPress = () => {
+        handleSendMessage();
+    };
 
     const handleSendMessage = async () => {
         if (input.trim()) {
@@ -81,6 +91,7 @@
             <input
             type="text"
             value={input}
+            onKeyDown={handleKeyDown}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your question..."
             className={styles.inputField}

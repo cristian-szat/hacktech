@@ -16,7 +16,7 @@ function CardContainer() {
           alt="Diagnostic for Patient"
           className={styles.cardImage}
         />
-        <p className={styles.cardText}>Patient Diagnostic</p>
+        <p className={styles.cardText}>Patient</p>
       </div>
       <div
         className={styles.card}
@@ -27,7 +27,7 @@ function CardContainer() {
           alt="Diagnostic for Doctor"
           className={styles.cardImage}
         />
-        <p className={styles.cardText}>Doctor Diagnostic</p>
+        <p className={styles.cardText}>Doctor</p>
       </div>
     </div>
   );

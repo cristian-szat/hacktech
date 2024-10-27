@@ -69,7 +69,7 @@ const DoctorPage = () => {
 
   const handleSave = () => {
     // alert(`Saved for ${selectedPatient?.name}: ${diagnostic} - Medications: ${selectedMedications.join(", ")}`);
-    alert(`Saved for ${selectedPatient?.name}`);
+    alert(`The data was saved!`);
   };
 
     // Fetch patients when component mounts
