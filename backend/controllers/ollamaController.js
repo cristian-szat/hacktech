@@ -4,20 +4,24 @@ const PatientService = require("../services/patientService");
 const fetchOllamaResponse = async (req, res) => {
     const { query, context, patient } = req.body;
 
+    const patientService = new PatientService();
     let patientData = "";
+    patientData = JSON.stringify(patientService.getPatientDetails(patient || 1));
 
-    if(patient){
-        const patientService = new PatientService();
+    let initPrompt = '';
 
-        patientData = JSON.stringify(patientService.getPatientDetails(patient));
-        
-        console.log("patient:", patientData);
+    if (!context.length) {
+        if (patient) {
+            initPrompt = 'I am the doctor Smith and I will need some help with a patient with the following data: ' + patientData + '.';
+        } else {
+            initPrompt = 'I am the patient with the following data: ' + patientData + '.'
+        }
     }
 
     try {
         const response = await ollama.generate({
             model: process.env.OLLAMA_MODEL_NAME,
-            prompt: query,
+            prompt: initPrompt + query,
             context
         });
 

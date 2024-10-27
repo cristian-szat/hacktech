@@ -7,7 +7,6 @@ const fetchPatientResponse = async (req, res) => {
         const patientService = new PatientService();
 
         const allPatients = patientService.getPatients();
-        console.log("All Patients:", allPatients);
 
         res.json({ allPatients });
     } catch (error) {
