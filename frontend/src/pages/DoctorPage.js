@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./DoctorPage.css";
 import Chatbot from "./../components/Chatbot"; // Import the Chatbot component
 
 const DoctorPage = () => {
-  // Sample patient data
+  const [patients, setPatients] = useState([]);
+  const [error, setError] = useState(null);
+  
+  /* Sample patient data
   const patients = [
     { id: 1, name: "John Doe" },
     { id: 2, name: "Jane Smith" },
     { id: 3, name: "Emily Johnson" },
     { id: 4, name: "Michael Brown" },
-  ];
+  ];*/
 
   const medications = [
     { id: 1, name: "Aspirin" },
@@ -23,14 +26,36 @@ const DoctorPage = () => {
   const [diagnostic, setDiagnostic] = useState("");
   const [selectedMedications, setSelectedMedications] = useState([]);
 
+    // Function to fetch the patients
+    const getPatients = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/patient");
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json(); // Assuming response is JSON
+        setPatients(data.allPatients); // Set the retrieved data in state
+      } catch (err) {
+        setError(err.message);
+        console.error("Failed to fetch patients:", err);
+      }
+    };
+
   // Filter patients based on search input
-  const filteredPatients = patients.filter(patient =>
-    patient.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredPatients = (patients) => {
+    console.log(patients, "patients")
+    if(patients){
+      patients.filter(patient =>
+        patient.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    return patients;
+}
 
   const handlePatientSelect = (event) => {
     const patientId = parseInt(event.target.value);
-    setSelectedPatient(patients.find((p) => p.id === patientId));
+    setSelectedPatient(patientId);
   };
 
   const handleMedicationChange = (event) => {
@@ -44,6 +69,12 @@ const DoctorPage = () => {
   const handleSave = () => {
     alert(`Saved for ${selectedPatient?.name}: ${diagnostic} - Medications: ${selectedMedications.join(", ")}`);
   };
+
+    // Fetch patients when component mounts
+    useEffect(() => {
+      getPatients();
+    }, []);
+
 
   return (
     <div className={styles.pageContainer}>
@@ -59,7 +90,7 @@ const DoctorPage = () => {
         />
         <select onChange={handlePatientSelect} defaultValue="">
           <option value="" disabled>Select a patient</option>
-          {filteredPatients.map((patient) => (
+          {filteredPatients(patients).map((patient) => (
             <option key={patient.id} value={patient.id}>{patient.name}</option>
           ))}
         </select>
@@ -67,7 +98,7 @@ const DoctorPage = () => {
 
       {/* Chat Window */}
       <div className={styles.chatContainer}>
-        <Chatbot />
+        <Chatbot patient={selectedPatient} />
       </div>
 
       {/* Medication and Diagnostic Area */}
