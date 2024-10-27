@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Chatbot.module.css"; // Create a new CSS module for styling
 
-const Chatbot = () => {
+const Chatbot = ({patient}) => {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hello! How can I assist you with your health today?" },
     { sender: "user", text: "Can you tell me about flu symptoms?" }
   ]);
+
   const [input, setInput] = useState("");
 
   const [chatContext, setchatContext] = useState([]);
@@ -35,12 +36,13 @@ const Chatbot = () => {
 
   async function postToOllama(query, context) {
     try {
+
       const response = await fetch("http://localhost:8080/api/ollama", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ query, context}), // Passing the query as a JSON object
+        body: JSON.stringify({ query, context, patient}), // Passing the query as a JSON object
       });
   
       if (!response.ok) {

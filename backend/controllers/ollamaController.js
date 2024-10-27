@@ -1,7 +1,18 @@
 const { default: ollama } = require('ollama');
+const PatientService = require("../services/patientService");
 
 const fetchOllamaResponse = async (req, res) => {
-    const { query, context } = req.body;
+    const { query, context, patient } = req.body;
+
+    let patientData = "";
+
+    if(patient){
+        const patientService = new PatientService();
+
+        patientData = JSON.stringify(patientService.getPatientDetails(patient));
+        
+        console.log("patient:", patientData);
+    }
 
     try {
         const response = await ollama.generate({
